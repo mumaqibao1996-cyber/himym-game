@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>How I Met Your Mother — The Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=9">
+</head>
+<body>
+
+  <!-- 主屏幕 -->
+  <div id="screen-main" class="screen active">
+    <!-- 图片底层 -->
+    <div class="main-hero-photo"></div>
+    <!-- 渐变融合层 -->
+    <div class="main-bg"></div>
+    <!-- 晕影层 -->
+    <div class="main-vignette"></div>
+    <!-- 胶片划痕 -->
+    <div class="main-film-scratch"></div>
+    <!-- 噪点颗粒 -->
+    <div class="main-film-grain"></div>
+    <div class="main-content">
+      <!-- 顶部 Logo -->
+      <div class="main-logo">
+        <div class="logo-eyebrow">2005 · NEW YORK CITY</div>
+        <h1 class="logo-title">How I Met<br><span class="logo-accent">Your Mother</span></h1>
+        <div class="logo-subtitle">— The Interactive Story —</div>
+      </div>
+
+      <!-- 中部占位（露出照片人物） -->
+      <div style="flex:1"></div>
+
+      <!-- 底部按钮区 -->
+      <div class="main-bottom">
+        <div class="main-buttons">
+          <button class="btn-main btn-primary" id="btn-new-game">
+            <span class="btn-icon">▶</span> 开始新游戏
+          </button>
+          <button class="btn-main btn-secondary" id="btn-continue" style="display:none">
+            <span class="btn-icon">⏎</span> 继续游戏
+          </button>
+          <button class="btn-main btn-ghost" id="btn-seasons">
+            <span class="btn-icon">☰</span> 选择章节
+          </button>
+          <button class="btn-main btn-ghost" id="btn-characters">
+            <span class="btn-icon">♥</span> 人物关系
+          </button>
+        </div>
+        <div class="main-footer">
+          <div class="footer-quote">"And that, kids, is how it all began."</div>
+          <div class="footer-ted">— Ted Mosby, 2030</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="deco-beer-mug">🍺</div>
+    <div class="deco-umbrella">☂</div>
+  </div>
+
+  <!-- 章节选择屏幕 -->
+  <div id="screen-seasons" class="screen">
+    <div class="main-film-grain"></div>
+    <div class="screen-header">
+      <button class="btn-back" id="btn-back-main">← 返回</button>
+      <h2 class="screen-title">选择章节</h2>
+    </div>
+    <div class="seasons-grid" id="seasons-grid">
+      <!-- JS 动态生成 -->
+    </div>
+  </div>
+
+  <!-- 人物关系屏幕 -->
+  <div id="screen-characters" class="screen">
+    <div class="main-film-grain"></div>
+    <div class="screen-header">
+      <button class="btn-back" id="btn-back-main2">← 返回</button>
+      <h2 class="screen-title">好感度 & 人物关系</h2>
+    </div>
+    <div class="characters-list" id="characters-list">
+      <!-- JS 动态生成 -->
+    </div>
+  </div>
+
+  <!-- 游戏主屏幕 -->
+  <div id="screen-game" class="screen">
+    <!-- 胶片噪点 -->
+    <div class="film-grain" id="film-grain"></div>
+    <!-- 晕影 -->
+    <div class="vignette"></div>
+
+    <!-- 顶部信息栏 -->
+    <div class="game-topbar">
+      <button class="btn-icon-sm" id="btn-menu">☰</button>
+      <div class="episode-info" id="episode-info">Season 1 · Episode 1</div>
+      <button class="btn-icon-sm" id="btn-affinity-toggle">♥</button>
+    </div>
+
+    <!-- 场景背景 -->
+    <div class="scene-bg" id="scene-bg">
+      <div class="scene-overlay"></div>
+      <!-- 角色立绘区域 -->
+      <div class="character-area" id="character-area">
+        <div class="character-sprite" id="character-sprite"></div>
+        <div class="character-name-tag" id="character-name-tag"></div>
+      </div>
+    </div>
+
+    <!-- 好感度浮动提示 -->
+    <div class="affinity-popup" id="affinity-popup"></div>
+
+    <!-- 好感度侧边栏 -->
+    <div class="affinity-panel" id="affinity-panel">
+      <div class="affinity-panel-title">好感度</div>
+      <div class="affinity-bars" id="affinity-bars">
+        <!-- JS 动态生成 -->
+      </div>
+      <button class="btn-close-panel" id="btn-close-affinity">✕</button>
+    </div>
+
+    <!-- 对话框 -->
+    <div class="dialogue-box" id="dialogue-box">
+      <div class="dialogue-speaker" id="dialogue-speaker"></div>
+      <div class="dialogue-text" id="dialogue-text"></div>
+      <div class="dialogue-advance" id="dialogue-advance">
+        <span class="advance-dot"></span>
+        <span class="advance-dot"></span>
+        <span class="advance-dot"></span>
+      </div>
+    </div>
+
+    <!-- 选项区域 -->
+    <div class="choices-area" id="choices-area" style="display:none">
+      <div class="choices-prompt">你会怎么选择？</div>
+      <div class="choices-list" id="choices-list">
+        <!-- JS 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 菜单遮罩 -->
+    <div class="menu-overlay" id="menu-overlay" style="display:none">
+      <div class="menu-panel">
+        <h3 class="menu-title">☰ 菜单</h3>
+        <button class="btn-menu-item" id="btn-save">💾 保存进度</button>
+        <button class="btn-menu-item" id="btn-load">📂 读取存档</button>
+        <button class="btn-menu-item" id="btn-auto">⏩ 自动播放</button>
+        <button class="btn-menu-item" id="btn-skip">⏭ 跳过对话</button>
+        <button class="btn-menu-item" id="btn-to-main">🏠 返回主菜单</button>
+        <button class="btn-menu-close" id="btn-menu-close">✕ 关闭</button>
+      </div>
+    </div>
+
+    <!-- 成就弹窗 -->
+    <div class="achievement-popup" id="achievement-popup" style="display:none">
+      <div class="achievement-inner">
+        <div class="achievement-icon" id="achievement-icon">🏆</div>
+        <div class="achievement-text">
+          <div class="achievement-label">成就解锁</div>
+          <div class="achievement-name" id="achievement-name">Legendary!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 章节完成屏幕 -->
+  <div id="screen-episode-end" class="screen">
+    <div class="main-film-grain"></div>
+    <div class="episode-end-content">
+      <div class="episode-end-title" id="episode-end-title">Episode Complete</div>
+      <div class="episode-end-subtitle" id="episode-end-subtitle"></div>
+      <div class="episode-end-summary" id="episode-end-summary"></div>
+      <div class="episode-affinity-changes" id="episode-affinity-changes"></div>
+      <button class="btn-main btn-primary" id="btn-next-episode">下一集 →</button>
+      <button class="btn-main btn-ghost" id="btn-to-main2">返回主菜单</button>
+    </div>
+  </div>
+
+  <script src="data/characters.js?v=9"></script>
+  <script src="data/season1.js?v=12"></script>
+  <script src="data/season2.js?v=9"></script>
+  <script src="data/season3.js?v=1"></script>
+  <script src="main.js?v=10"></script>
+</body>
+</html>
