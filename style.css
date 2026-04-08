@@ -1200,3 +1200,14 @@ html, body {
   .game-topbar { padding-top: max(12px, env(safe-area-inset-top)); }
   .choices-area { padding-bottom: max(20px, env(safe-area-inset-bottom)); }
 }
+
+/* ============================
+   手机端封面图切换（< 768px 竖版）
+   ============================ */
+@media (max-width: 767px) {
+  .main-hero-photo {
+    background-image: url('assets/hero-mobile.jpg');
+    background-position: center 20%;
+    background-size: cover;
+  }
+}
