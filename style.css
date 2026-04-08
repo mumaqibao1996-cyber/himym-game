@@ -1202,9 +1202,18 @@ html, body {
 }
 
 /* ============================
-   手机端封面图切换（< 768px 竖版）
+   手机端封面图切换（竖版）
+   兼容微信WebView：同时检测宽度和触控设备
    ============================ */
 @media (max-width: 767px) {
+  .main-hero-photo {
+    background-image: url('assets/hero-mobile.jpg');
+    background-position: center 20%;
+    background-size: cover;
+  }
+}
+/* 微信/安卓 WebView 可能以980px渲染，用 pointer:coarse 识别触屏设备 */
+@media (pointer: coarse) and (max-width: 1024px) {
   .main-hero-photo {
     background-image: url('assets/hero-mobile.jpg');
     background-position: center 20%;
