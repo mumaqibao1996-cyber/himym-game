@@ -37,7 +37,7 @@ const CHARACTERS = {
     id: 'barney',
     name: 'Barney Stinson',
     shortName: 'Barney',
-    role: '西装男 · Ted Mosby - The Architect',
+    role: '西装男 · Swarley',
     emoji: '🤵',
     avatar: 'assets/barney.jpg',
     color: '#2a6aad',
